@@ -84,3 +84,15 @@ def setpasswd(req):
 			status = 'passwd_err'
 	content = {'user':user,'active_menu':'homepage','status':status}
 	return render_to_response('setpasswd.html',content,context_instance = RequestContext(req))
+
+def addbook(req):
+	username = req.session.get('username','')
+	if username != '':
+		user = MyUser.objects.get(user__username = username)
+	else:
+		return HttpResponseRedirect('/login/')
+	if user.permission < 2:
+		return HttpResponseRedirect('/')
+	status = ''
+	content = {'user':user, 'active_menu':'addbook', 'status':status}
+	return render_to_response('addbook.html', content, context_instance = RequestContext(req))

@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^login/$',views.login),
     url(r'^logout/$',views.logout),
     url(r'^setpasswd/$',views.setpasswd),
+    url(r'^addbook/$',views.addbook),
 )
