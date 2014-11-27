@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.conf import settings
 from management import views
 
 urlpatterns = patterns('',
@@ -14,4 +15,7 @@ urlpatterns = patterns('',
     url(r'^logout/$',views.logout),
     url(r'^setpasswd/$',views.setpasswd),
     url(r'^addbook/$',views.addbook),
+    url(r'^viewbook/$',views.viewbook),
+    url(r'^viewbook/detail/$',views.detail),
+    url(r'^image/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_PATH}),
 )
