@@ -1,0 +1,49 @@
+{% extends "management/base.html" %}
+{% load staticfiles %}
+{% block title %}查看图书{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-5">
+                    {% if book.img_set.all %}
+                        <div id="carousel-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                {% for img in book.img_set.all %}
+                                    <li data-target="#carousel-generic" data-slide-to="{{ forloop.counter0 }}"
+                                        {% if forloop.first %}class="active"{% endif %}></li>
+                                {% endfor %}
+                            </ol>
+                            <div class="carousel-inner" role="listbox">
+                                {% for img in book.img_set.all %}
+                                    <div {% if forloop.first %}class="item active"{% else %}class="item"{% endif %}>
+                                        <img class="img-rounded" src="{% url 'media' img.img %}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <a class="left carousel-control" href="#carousel-generic" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-generic" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    {% else %}
+                        <p class="text-center">暂无图片</p>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 col-md-offset-1">
+                    <h2 class="text-center">{{ book.name }}</h2>
+                    <br>
+                    <h3>作者：{{ book.author }}</h3>
+                    <h3>类别：{{ book.category }}</h3>
+                    <h3>出版日期：{{ book.publish_data|date:"Y-m-d" }}</h3>
+                    <h3>价格：{{ book.price|floatformat:2 }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

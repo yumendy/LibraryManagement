@@ -1,0 +1,65 @@
+{% extends "management/base.html" %}
+{% block title %}添加图书{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+                {% if state == 'success' %}
+                    <div class="well">
+                        <h2 class="text-success text-center">添加成功</h2>
+                    </div>
+                {% elif state == 'error' %}
+                    <div class="well">
+                        <h2 class="text-danger text-center">添加失败</h2>
+                    </div>
+                {% endif %}
+                <form method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h1 class="form-signin-heading text-center">添加图片</h1>
+
+                    <div class="form-group">
+                        <label for="id_name" class="col-md-3 control-label">名称：</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="id_name" required name="name" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_description" class="col-md-3 control-label">描述：</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" required name="description" id="id_description">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_book" class="col-md-3 control-label">所属书籍：</label>
+                        <div class="col-md-9">
+                            <select name="book" id="id_book" class="form-control">
+                                {% for book in book_list %}
+                                    <option value="{{ book.id }}">{{ book.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_img" class="col-md-3 control-label">图片：</label>
+                        <div class="col-md-9">
+                            <input type="file" id="id_img" name="img" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4 col-md-offset-4">
+                            <button class="btn btn btn-primary btn-block" type="submit">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
