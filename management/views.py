@@ -4,9 +4,9 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from models import MyUser, Book, Img
+from management.models import MyUser, Book, Img
 from django.core.urlresolvers import reverse, reverse_lazy
-from utils import permission_check
+from management.utils import permission_check
 
 
 def index(request):
@@ -163,7 +163,7 @@ def detail(request):
         return HttpResponseRedirect(reverse('view_book_list'))
     try:
         book = Book.objects.get(pk=book_id)
-    except:
+    except Book.DoesNotExist:
         return HttpResponseRedirect(reverse('view_book_list'))
     content = {
         'user': user,
@@ -186,9 +186,9 @@ def add_img(request):
                     book=Book.objects.get(pk=request.POST.get('book', ''))
             )
             new_img.save()
-        except Exception, e:
+        except Book.DoesNotExist as e:
             state = 'error'
-            print e
+            print(e)
         else:
             state = 'success'
     content = {
