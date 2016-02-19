@@ -1,2 +1,5 @@
 def permission_check(user):
-    return user.myuser.permission > 1
+    if user.is_authenticated():
+        return user.myuser.permission > 1
+    else:
+        return False

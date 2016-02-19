@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from management.models import MyUser, Book, Img
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.core.urlresolvers import reverse
 from management.utils import permission_check
 
 
@@ -74,7 +74,7 @@ def logout(request):
     return HttpResponseRedirect(reverse('homepage'))
 
 
-@login_required(login_url=reverse_lazy('login'))
+@login_required
 def set_password(request):
     user = request.user
     state = None
@@ -101,7 +101,7 @@ def set_password(request):
     return render(request, 'management/set_password.html', content)
 
 
-@user_passes_test(permission_check, login_url=reverse_lazy('login'))
+@user_passes_test(permission_check)
 def add_book(request):
     user = request.user
     state = None
@@ -173,7 +173,7 @@ def detail(request):
     return render(request, 'management/detail.html', content)
 
 
-@user_passes_test(permission_check, login_url=reverse_lazy('login'))
+@user_passes_test(permission_check)
 def add_img(request):
     user = request.user
     state = None

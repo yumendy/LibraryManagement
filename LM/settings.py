@@ -120,3 +120,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static').replace('\\', '/')
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
+
+LOGIN_URL = '/login/'
