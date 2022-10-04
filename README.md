@@ -19,6 +19,7 @@
 * 修复了注册用户时用户提交空密码可能造成的安全漏洞。
 
 * 做了对python3的支持。改动不多。
+* what the heck is this i dont even know
 
 
 ### 项目所涉及的和Django相关的功能
