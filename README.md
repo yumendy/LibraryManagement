@@ -39,7 +39,7 @@
 
 * Django自带用户模块的注册和登录。 [文档](https://docs.djangoproject.com/en/1.9/topics/auth/default/)
 
-* 对Django自带的用户模块进行拓展(https://docs.djangoproject.com/en/1.9/topics/auth/customizing/)
+* 对Django自带的用户模块进行拓展。 [文档](https://docs.djangoproject.com/en/1.9/topics/auth/customizing/)
 
 * 静态文件处理。 [文档](https://docs.djangoproject.com/en/1.9/ref/contrib/staticfiles/)
 
